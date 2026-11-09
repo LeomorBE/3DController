@@ -21,27 +21,27 @@ public struct TeensyControllerState : IInputStateTypeInfo
     [FieldOffset(0)]
     public byte reportId;
 
-    [InputControl(name = "pitchLeft", layout = "SHRT")]
+    [InputControl(name = "pitchLeft", layout = "Integer", format = "SHRT")]
     [FieldOffset(1)]
     public short pitchLeft;
 
-    [InputControl(name = "rollLeft", layout = "SHRT")]
+    [InputControl(name = "rollLeft", layout = "Integer", format = "SHRT")]
     [FieldOffset(3)]
     public short rollLeft;
 
-    [InputControl(name = "pitchRight", layout = "SHRT")]
+    [InputControl(name = "pitchRight", layout = "Integer", format = "SHRT")]
     [FieldOffset(5)]
     public short pitchRight;
 
-    [InputControl(name = "rollRight", layout = "SHRT")]
+    [InputControl(name = "rollRight", layout = "Integer", format = "SHRT")]
     [FieldOffset(7)]
     public short rollRight;
 
-    [InputControl(name = "weightLeft", layout = "USHT")]
+    [InputControl(name = "weightLeft", layout = "Integer", format = "USHT")]
     [FieldOffset(9)]
     public ushort weightLeft;
 
-    [InputControl(name = "weightRight", layout = "USHT")]
+    [InputControl(name = "weightRight", layout = "Integer", format = "USHT")]
     [FieldOffset(11)]
     public ushort weightRight;
 }

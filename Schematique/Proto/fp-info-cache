@@ -1,4 +1,4 @@
-26805961048375224
+26809545984678038
 2N2222A
 TO127P584H533-3
 
@@ -73555,6 +73555,13 @@ threaded screw
 0
 4
 1
+NODEMCU-32S
+MODULE_NODEMCU-32S
+
+
+0
+38
+38
 NetTie
 NetTie-2_SMD_Pad0.5mm
 Net tie, 2 pin, 0.5mm square SMD pads
@@ -99541,6 +99548,13 @@ SOIC127P600X175-9N
 9
 Terminal block connector 2holes
 Terminal block connector 2holes
+
+
+0
+2
+2
+Terminal block connector 2holes
+Wago 2pins 1mm 8.2x10.6
 
 
 0

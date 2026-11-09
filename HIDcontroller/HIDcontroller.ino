@@ -12,10 +12,17 @@
 #define SCALE_RIGHT_DATA     22
 #define SCALE_RIGHT_CLOCK    23
 
+#define PIN_LED   9
+#define BLINK_MS  500
+
 MMA8452Q accelLeft;
 MMA8452Q accelRight;
 HX711 scaleLeft;
 HX711 scaleRight;
+
+bool ifBeforeUSBConnected = false;
+int countBlink = 0;
+int tempsBlink = 0;
 
 #define BUFFER_HID_12     1023
 #define BUFFER_HID_64     65534
@@ -60,6 +67,10 @@ void setup() {
   accelRight.setScale(SCALE_2G);
   accelLeft.setDataRate(ODR_400);
   accelRight.setDataRate(ODR_400);
+
+  tempsBlink = millis();
+  pinMode(PIN_LED, OUTPUT);
+  digitalWrite(PIN_LED, LOW);
 
 }
 
@@ -121,7 +132,29 @@ void loop() {
     data.weight_right = scale_to_hid_axis(dataFilteredRaw.weightRight);
   }
   //printData();
-  usb_controller_send(&data);
+  bool connected = (usb_configuration != 0);
+  if( connected && !ifBeforeUSBConnected){
+    if(millis() >= tempsBlink + BLINK_MS){
+      digitalWrite(PIN_LED, countBlink % 2);
+      if(countBlink>=6){
+        countBlink = 0;
+        ifBeforeUSBConnected = connected;
+        tempsBlink = millis();
+      }else{
+        countBlink++;
+        tempsBlink = millis();
+      }
+    }
+  }
+  else if(!connected && !ifBeforeUSBConnected){
+    countBlink = 0;
+    ifBeforeUSBConnected = connected;
+  }
+  else if(connected){
+    usb_controller_send(&data);
+  }
+  
+
 
 }
 
